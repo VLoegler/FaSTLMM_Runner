@@ -5,8 +5,8 @@ NB_PARA=5 # Nb of jobs to run in parallel
 WORKDIR=/path/to/workdir
 GENO=$WORKDIR/genotypes/genotypes.plink
 PHENODIR=$WORKDIR/phenotypes
-KINSHIP=""
-COVAR=""
+KINSHIP=""      # or /path/to/kinship.plink
+COVAR=""        # or /path/to/covariance.plink
 NB_PERM=100
 
 # Create new Pheno dir

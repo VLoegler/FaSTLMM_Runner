@@ -1,8 +1,8 @@
-library(calibrate, lib.loc = "/ccc/work/cont007/fg0006/loeglerv/Soft/Rlibraries/")
-library(qqman, lib.loc = "/ccc/work/cont007/fg0006/loeglerv/Soft/Rlibraries/")
+#!/usr/bin/env Rscript
+#library(calibrate, lib.loc = "/ccc/work/cont007/fg0006/loeglerv/Soft/Rlibraries/")
+#library(qqman, lib.loc = "/ccc/work/cont007/fg0006/loeglerv/Soft/Rlibraries/")
 
 library(qqman)
-library(viridis)
 
 directory = getwd()
 
@@ -160,18 +160,10 @@ if (gwas_soft=='gemma') {
     jpeg(paste(fileIn, "_p.jpg", sep=""))
     if(toHilight){
       library(pROC)
-      # OLD COLORS
-      #manhattan(assoc_df, col=c("cyan3", "darkorange", "red", "forestgreen", "slateblue3", "honeydew4", "brown","blue", "darkgoldenrod1", "darkmagenta", "firebrick", "darkorchid2", "hotpink4", "mediumaquamarine", "rosybrown3", "royalblue"), highlight=snps_to_hilight$V1 , suggestiveline = F, genomewideline = -log10(thresh))
-      # NEW VIRIDIS COL
-      viridisCol = viridis(7)[c((seq(0, 100, by = 3) %% 7) + 1)]
       # Bicolor
       biCol = rep(c("cornflowerblue", "gray40"), 40)
       manhattan(assoc_df, col=biCol, highlight=snps_to_hilight$V1 , suggestiveline = F, genomewideline = -log10(thresh))
     } else {
-      # OLD COLORS
-      #manhattan(assoc_df, col=c("cyan3", "darkorange", "red", "forestgreen", "slateblue3", "honeydew4", "brown","blue", "darkgoldenrod1", "darkmagenta", "firebrick", "darkorchid2", "hotpink4", "mediumaquamarine", "rosybrown3", "royalblue"), suggestiveline = F, genomewideline = -log10(thresh))
-      # NEW VIRIDIS COL
-      viridisCol = viridis(7)[c((seq(0, 100, by = 3) %% 7) + 1)]
       # Bicolor
       biCol = rep(c("cornflowerblue", "gray40"), 40)
       manhattan(assoc_df, col=biCol, suggestiveline = F, genomewideline = -log10(thresh))
