@@ -211,7 +211,7 @@ def run_gwas(
     df = pd.read_csv(pheno_file, sep="\t", index_col=0)
     phen_name = df.columns[0]
 
-    phen_dir = Path(outdir) / phen_name
+    phen_dir = (Path(outdir) / phen_name).resolve()
     if phen_dir.exists():
         raise FileExistsError(
             "Output directory '%s' already exists. Provide a new one." % phen_dir
