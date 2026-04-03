@@ -70,6 +70,11 @@ def parse_args() -> argparse.Namespace:
         "-t", "--threads", type=int, default=1, help="Number of threads"
     )
     parser.add_argument(
+        "--uncompressed",
+        action="store_true",
+        help="Write first association results as plain .txt instead of .txt.gz",
+    )
+    parser.add_argument(
         "--double-id",
         action="store_true",
         help="Set both FID and IID to the sample name. "
@@ -291,7 +296,8 @@ def run_gwas(
             first_association = results_df
 
     if first_association is not None:
-        out_assoc = phen_dir / (phen_name + ".first_assoc.txt.gz")
+        suffix = ".first_assoc.txt" if uncompressed else ".first_assoc.txt.gz"
+        out_assoc = phen_dir / (phen_name + suffix)
         first_association.to_csv(out_assoc, index=False, sep="\t")
         logger.info(
             "Association results written to %s (%d SNPs tested)",
