@@ -200,6 +200,14 @@ def run_gwas(
     *,
     double_id: bool,
 ) -> None:
+    # Resolve all paths before os.chdir() changes the working directory.    
+    bed_file = str(Path(bed_file).resolve())
+    if kinship_file:
+        kinship_file = str(Path(kinship_file).resolve())
+    if covar_file:
+        covar_file = str(Path(covar_file).resolve())
+    pheno_file = str(Path(pheno_file).resolve())
+
     df = pd.read_csv(pheno_file, sep="\t", index_col=0)
     phen_name = df.columns[0]
 
