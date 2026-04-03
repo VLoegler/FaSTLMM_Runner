@@ -204,6 +204,7 @@ def run_gwas(
     threads: int,
     *,
     double_id: bool,
+    uncompressed: bool = False,
 ) -> None:
     # Resolve all paths before os.chdir() changes the working directory.    
     bed_file = str(Path(bed_file).resolve())
@@ -356,6 +357,7 @@ def main() -> None:
             nperm=args.nb_permutations,
             threads=args.threads,
             double_id=args.double_id,
+            uncompressed=args.uncompressed,
         )
         logger.info("Total wall time: %.1f seconds", time.time() - t0)
 
